@@ -2,7 +2,6 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# Citirea datelor din fișierul CSV
 df = pd.read_csv('DP_LIVE_09042023110315225.csv')
 
 # Filtrarea datelor pentru valorile "TOT" și pentru anii 2018-2021
@@ -14,8 +13,8 @@ heatmap_data = df_filtrat.pivot(index='LOCATION', columns='TIME', values='Value'
 # Setarea mărimii figurii
 plt.figure(figsize=(10, 8))
 
-# Crearea heatmap-ului folosind seaborn
-sns.heatmap(heatmap_data, annot=True, cmap='viridis', fmt=".1f")
+# Crearea heatmap-ului folosind seaborn cu paleta de culori de la albastru deschis la albastru închis
+sns.heatmap(heatmap_data, annot=True, cmap='Blues', fmt=".1f")
 
 # Adăugarea titlului și etichetelor axelor
 plt.title('Speranța de viață (2018-2021)')
