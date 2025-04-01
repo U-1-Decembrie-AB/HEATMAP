@@ -1,0 +1,26 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Citirea datelor din fișierul CSV
+df = pd.read_csv('DP_LIVE_09042023110315225.csv')
+
+# Filtrarea datelor pentru valorile "TOT" și pentru anii 2018-2021
+df_filtrat = df[(df['SUBJECT'] == 'TOT') & (df['TIME'].isin([2018, 2019, 2020, 2021]))]
+
+# Crearea unui pivot table cu țările pe rânduri și anii pe coloane
+heatmap_data = df_filtrat.pivot(index='LOCATION', columns='TIME', values='Value')
+
+# Setarea mărimii figurii
+plt.figure(figsize=(10, 8))
+
+# Crearea heatmap-ului folosind seaborn
+sns.heatmap(heatmap_data, annot=True, cmap='viridis', fmt=".1f")
+
+# Adăugarea titlului și etichetelor axelor
+plt.title('Speranța de viață (2018-2021)')
+plt.xlabel('Ani')
+plt.ylabel('Țări')
+
+# Afișarea graficului
+plt.show()
